@@ -1,0 +1,280 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+    {% from "_formhelpers.html" import render_field  %}
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flashes">
+            {% for category,message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        </div>
+
+    {% endif %}
+    {% endwith %}
+    <br>
+    <br>
+    <br>
+    <div class="row">
+    <div class="col-md-12">
+        <img src="static/images/index/360_F_544546950_Xi80k2ppry7rqKQQYsSNVmuaAILUiki9.jpg" class="img-fluid mb-3 w-100 h-50 bottom-100" alt="Hình ảnh mô tả" />
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-truck display-1"></i>
+            <div>
+                <h2 class="text-danger"> Khuyến mãi vận chuyển</h1>
+                <p> Chọn lựa các file sách ebook hoặc audiobook</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-piggy-bank display-1"></i>
+            <div>
+                <h2 class="text-danger"> Giảm giá mạnh</h1>
+                <p> Nhận giảm giá tốt cho sản phẩm được đánh giá cao nhất của chúng tôi</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-rocket-takeoff display-1"></i>
+            <div>
+                <h2 class="text-danger"> Chuyển phát nhanh</h1>
+                <p> Tận hưởng các chính sách vận chuyển và dịch vụ giao hàng nhanh của chúng tôi</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<section id="billboard">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <button class="prev slick-arrow">
+                    <i class="icon icon-arrow-left"></i>
+                </button>
+
+                <div class="main-slider pattern-overlay">
+                    <div class="slider-item">
+                        <div class="banner-content">
+                            <h2 class="banner-title">Life of the Wild</h2>
+                            <p>"Life of the Wild" là một cuốn sách đầy kỳ vọng về cuộc sống hoang dã, nó mở ra một thế giới hoang dã đầy kỳ diệu và bí ẩn. Tác giả tận dụng tài năng vượt trội của mình để chia sẻ về các hành trình phiêu lưu và những kỷ niệm đáng nhớ khi sống cùng với tự nhiên.
+
+                            </p>
+                            <div class="btn-wrap">
+                                <a href="{{url_for('product_detail',id=16)}}" class="btn btn-outline-accent btn-accent-arrow">Xem Thêm<i
+                                        class="icon icon-ns-arrow-right"></i></a>
+                            </div>
+                        </div><!--banner-content-->
+                        <img src="/static/images/index/main-banner1.jpg" alt="banner" class="banner-image">
+                    </div><!--slider-item-->
+
+                    <div class="slider-item">
+                        <div class="banner-content">
+                            <h2 class="banner-title">Birds gonna be Happy</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
+                                ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
+                                urna, a eu.</p>
+                            <div class="btn-wrap">
+                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
+                                        class="icon icon-ns-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <img src="/static/images/index/main-banner2.jpg" alt="banner" class="banner-image">
+                    </div>
+
+                </div>
+
+                <button class="next slick-arrow">
+                    <i class="icon icon-arrow-right"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="container-fluid">
+    <h1 class="text-center text-danger">Sách nổi bật</h1>
+</div>
+
+<section id="best-selling" class="leaf-pattern-overlay">
+    <div class="corner-pattern-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <figure class="products-thumb">
+                            <img src="/static/images/index/single-image.jpg" alt="book" class="single-image">
+                        </figure>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="product-entry">
+                            <h2 class="section-title divider">Best Selling Book</h2>
+
+                            <div class="products-content">
+                                <div class="author-name">By Timbur Hood</div>
+                                <h3 class="item-title">Birds gonna be happy</h3>
+                                <p>Birds Gonna Be Happy" của Timbur Hoods là một cuốn sách tuyệt vời về thế giới đa dạng và kỳ diệu của loài chim. Tác giả mang đến cho độc giả những câu chuyện hấp dẫn và thông tin thú vị về cuộc sống, hành vi và các loài chim khác nhau trên khắp thế giới..</p>
+                                <div class="item-price">120.000VNĐ</div>
+                                <div class="btn-wrap">
+                                    <a  class="btn-accent-arrow" href="{{url_for('product_detail',id=15)}}">Mua ngay<i
+                                            class="icon icon-ns-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- / row -->
+
+            </div>
+
+        </div>
+    </div>
+</section>
+    
+<section id="latest-blog" class="py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Read our articles</span>
+                    </div>
+                    <h2 class="section-title">Latest Articles</h2>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <article class="column" data-aos="fade-up">
+
+                            <figure>
+                                <a href="#" class="image-hvr-effect">
+                                    <img src="/static//images/index/images/post-img3.jpg" alt="post" class="post-image">
+                                </a>
+                            </figure>
+
+                            <div class="post-item">
+                                <div class="meta-date">Mar 30, 2021</div>
+                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+
+                                <div class="links-element">
+                                    <div class="categories">inspiration</div>
+                                    <div class="social-links">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="icon icon-facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-behance-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!--links-element-->
+
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <article class="column" data-aos="fade-up" data-aos-delay="200">
+                            <figure>
+                                <a href="#" class="image-hvr-effect">
+                                    <img src="/static//images/index/images/post-img2.jpg" alt="post" class="post-image">
+                                </a>
+                            </figure>
+                            <div class="post-item">
+                                <div class="meta-date">Mar 29, 2021</div>
+                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+
+                                <div class="links-element">
+                                    <div class="categories">inspiration</div>
+                                    <div class="social-links">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="icon icon-facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-behance-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!--links-element-->
+
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <article class="column" data-aos="fade-up" data-aos-delay="400">
+                            <figure>
+                                <a href="#" class="image-hvr-effect">
+                                    <img src="/static//images/index/images/post-img1.jpg" alt="post" class="post-image">
+                                </a>
+                            </figure>
+                            <div class="post-item">
+                                <div class="meta-date">Feb 27, 2021</div>
+                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+
+                                <div class="links-element">
+                                    <div class="categories">inspiration</div>
+                                    <div class="social-links">
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="icon icon-facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="icon icon-behance-square"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div><!--links-element-->
+
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="btn-wrap align-center">
+                        <a href="#" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Read All Articles<i
+                                class="icon icon-ns-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

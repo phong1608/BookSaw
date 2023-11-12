@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <hr class="dividerSS">
+    <div class="container"></div>
+    <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h2 class="text-center  ">Thêm sách</h2>
+            {% from "_formhelpers.html" import render_field %}
+            <form action="" method="POST" enctype="multipart/form-data">
+                {{ render_field(form.name,class='form-control mt-2',placeholder="Thêm tên sách") }}
+                {{ render_field(form.author,class='form-control',placeholder="Tác giả") }}
+                {{ render_field(form.price,class='form-control',placeholder="Thêm giá sách") }}
+                {{ render_field(form.stock,class='form-control',placeholder="Số lượng sách trong kho") }}
+                {{ render_field(form.discount,class='form-control',placeholder="Khuyến mãi") }}
+                {{ render_field(form.description,class='form-control',placeholder="Mô tả",rows='10') }}
+                <label for="category">Thêm danh mục</label>
+                <select name="category" id="brand" class="form-control">
+                    <option value="">--Select category--</option>
+                    {% for category in categories %}
+                    <option value={{ category.id }}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="container">
+                    <div class="col-md-4">{{ render_field(form.image_1,class="form-control") }}</div>
+                </div>
+                <button type="submit" class="btn-info btn">Add</button>
+            </form>
+        {% endblock content %}
+        </div>
+

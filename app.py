@@ -1,7 +1,7 @@
 from flask import Flask, flash
 from flask import render_template, session, request, redirect, url_for
 from __init__ import db, bcrypt, app
-import routes
+import import_ipynb
 from shop.customer import routes
 from shop.cart import routes
 from shop.order import routes
@@ -15,11 +15,6 @@ from shop.Review import routes
 from __init__ import login_manager
 from shop.customer.forms import Registration
 from flask_login import login_user, logout_user, current_user
-
-
-@app.route('/')
-def index():  # put application's code here
-    return render_template('index.html')
 
 
 @app.route('/admin/register', methods=['GET', 'POST'])

@@ -10,6 +10,8 @@
 	}
 </style>
 </style>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
 <section class="section-content padding-y">
 <div class="container">
 
@@ -24,13 +26,12 @@
 				<h6 class="title">Danh mục</h6>
 			</a>
 		</header>
-		<div class="filter-content collapse show" id="collapse_1" style="">
+		<div  class="filter-content collapse show" id="searchForm" style="">
 			<div class="card-body">
 				<form class="pb-3">
 				<div class="input-group">
-				  <input type="text" class="form-control" placeholder="Search">
+				  <input type="text" id='query' class="form-control" name='query' placeholder="Search">
 				  <div class="input-group-append">
-				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
 				  </div>
 				</div>
 				</form>
@@ -56,7 +57,7 @@
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 		
-			<div class="row">
+			<div class="row productsContainer " id='productsContainer'>
 				{% for product in products.items %}
 					<div class="col-lg-4 col-sm-12 mb-4">
 						<div class="card border-0 p-3 shadow border-top border-5 rounded d-flex flex-column align-items-stretch product-card">
@@ -111,6 +112,22 @@
 </div>
 
 </div> 
+<script>
+    $(document).ready(function() {
+        $('#query').on('input', function() {
+            var query = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '/product/search',
+                data: { query: query },
+                success: function(response) {
+                    // Hiển thị danh sách sản phẩm mới
+                    $('#productsContainer').html(response.products);
+                }
+            });
+        });
+    });
+</script>
 </section>
 
 {% endblock content %}

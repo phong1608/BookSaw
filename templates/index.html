@@ -77,11 +77,9 @@
                     <div class="slider-item">
                         <div class="banner-content">
                             <h2 class="banner-title">Birds gonna be Happy</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
-                                ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
-                                urna, a eu.</p>
+                            <p>Birds Gonna Be Happy" của Timbur Hoods là một cuốn sách tuyệt vời về thế giới đa dạng và kỳ diệu của loài chim. Tác giả mang đến cho độc giả những câu chuyện hấp dẫn và thông tin thú vị về cuộc sống, hành vi và các loài chim khác nhau trên khắp thế giới..</p>
                             <div class="btn-wrap">
-                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
+                                <a href="{{url_for('product_detail',id=15)}}" class="btn btn-outline-accent btn-accent-arrow">Xem thêm<i
                                         class="icon icon-ns-arrow-right"></i></a>
                             </div>
                         </div>
@@ -144,7 +142,243 @@
         </div>
     </div>
 </section>
+<section id="featured-books" class="py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Sách chất lượng cao</span>
+                    </div>
+                    <h2 class="section-title">Sách Hot</h2>
+                </div>
+
+                <div class="product-list" data-aos="fade-up">
+                    <div class="row">
+                        {% for book in featured_books%}
+                        <div class="col-md-3">
+                            <div class="product-item">
+                                <figure class="product-style">
+                                    <img src="/static/images/{{ book.image_1 }}" alt="Books" class="product-item">
+                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
+                                        <a class='text-primary' href="{{ url_for('product_detail', id=book.id) }}">Xem chi tiết</a>
+                                    </button>
+                                    
+                                </figure>
+                                <figcaption>
+                                    <h3>{{book.name}}</h3>
+                                    <span>{{book.author}}</span>
+                                    <div class="item-price">{{book.price}} VNĐ</div>
+                                </figcaption>
+                            </div>
+                        </div>
+
+                        {%endfor%}
+                    </div><!--ft-books-slider-->
+                </div><!--grid-->
+
+
+            </div><!--inner-content-->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="btn-wrap align-right">
+                    <a href="{{url_for('product_page')}}" class="btn-accent-arrow">Hiển thị tất cả sản phẩm <i
+                            class="icon icon-ns-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>    
+<section id="popular-books" class="bookshelf py-5 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Sách tốt</span>
+                    </div>
+                    <h2 class="section-title">Sách phổ biến</h2>
+                </div>
+
+                <ul class="tabs">
+                    <li data-tab-target="#all-genre" class="active tab">Tất cả</li>
+                    <li data-tab-target="#business" class="tab">Tiểu thuyết</li>
+                    <li data-tab-target="#technology" class="tab">Lịch sử</li>
+                    <li data-tab-target="#romantic" class="tab">Ngôn tình</li>
+                    <li data-tab-target="#adventure" class="tab">Huyền bí</li>
+                    <li data-tab-target="#fictional" class="tab">Trinh thám</li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="all-genre" data-tab-content class="active">
+                        <div class="row">
+                            {%for product in popular_books%}
+                            <div class="col-md-3">
+                                <div class="product-item">
+                                    <figure class="product-style">
+                                        <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                    </figure>
+                                    <figcaption>
+                                        <h3>{{product.name}}</h3>
+                                        <span>{{product.author}}</span>
+                                        <div class="item-price">{{product.price}} VNĐ</div>
+                                    </figcaption>
+                                </div>
+                            </div>
+                            {%endfor%}
+
+                           
+                        </div>
+                        <div class="row">
+                            {%for product in romance_novels%}
+                            <div class="col-md-3">
+                                <div class="product-item">
+                                    <figure class="product-style">
+                                        <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                    </figure>
+                                    <figcaption>
+                                        <h3>{{product.name}}</h3>
+                                        <span>{{product.author}}</span>
+                                        <div class="item-price">{{product.price}} VNĐ</div>
+                                    </figcaption>
+                                </div>
+                            </div>
+                            {%endfor%}
+
+                        </div>
+
+                    </div>
+                    <div id="business" data-tab-content>
+                        <div class="row">
+                            <div class="row">
+                                {%for product in popular_books%}
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{product.name}}</h3>
+                                            <span>{{product.author}}</span>
+                                            <div class="item-price">{{product.price}} VNĐ</div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                {%endfor%}
     
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="technology" data-tab-content>
+                        <div class="row">
+                            <div class="row">
+                                {%for product in historical_novels%}
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{product.name}}</h3>
+                                            <span>{{product.author}}</span>
+                                            <div class="item-price">{{product.price}} VNĐ</div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                {%endfor%}
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="romantic" data-tab-content>
+                        <div class="row">
+                            
+                            <div class="row">
+                                {%for product in romance_novels%}
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{product.name}}</h3>
+                                            <span>{{product.author}}</span>
+                                            <div class="item-price">{{product.price}} VNĐ</div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                {%endfor%}
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="adventure" data-tab-content>
+                        <div class="row">
+                            <div class="row">
+                                {%for product in fictional_novels%}
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{product.name}}</h3>
+                                            <span>{{product.author}}</span>
+                                            <div class="item-price">{{product.price}} VNĐ</div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                {%endfor%}
+    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="fictional" data-tab-content>
+                        <div class="row">
+                            <div class="row">
+                                {%for product in detective_novel%}
+                                <div class="col-md-3">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+                                            <img src="/static/images/{{ product.image_1 }}" alt="Books" class="product-item">
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"><a class='text-white' href="{{url_for('product_detail',id=product.id)}}">Xem ngay</a></button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{product.name}}</h3>
+                                            <span>{{product.author}}</span>
+                                            <div class="item-price">{{product.price}} VNĐ</div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                                {%endfor%}
+    
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div><!--inner-tabs-->
+
+        </div>
+    </div>
+</section>
 <section id="latest-blog" class="py-5 my-5">
     <div class="container">
         <div class="row">
@@ -152,9 +386,9 @@
 
                 <div class="section-header align-center">
                     <div class="title">
-                        <span>Read our articles</span>
+                        <span>Blog sách</span>
                     </div>
-                    <h2 class="section-title">Latest Articles</h2>
+                    <h2 class="section-title">Những bài review mới nhất</h2>
                 </div>
 
                 <div class="row">
@@ -170,8 +404,8 @@
                             </figure>
 
                             <div class="post-item">
-                                <div class="meta-date">Mar 30, 2021</div>
-                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+                                <div class="meta-date">Mar 30, 2023</div>
+                                <h3><a href="#">Khám Phá Những Tác Phẩm Nổi Bật Trong Thế Giới Sách</a></h3>
 
                                 <div class="links-element">
                                     <div class="categories">inspiration</div>
@@ -203,8 +437,8 @@
                                 </a>
                             </figure>
                             <div class="post-item">
-                                <div class="meta-date">Mar 29, 2021</div>
-                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+                                <div class="meta-date">Mar 29, 2023</div>
+                                <h3><a href="#">Hành Trình Truy Cập Các Thể Loại Sách Phổ Biến</a></h3>
 
                                 <div class="links-element">
                                     <div class="categories">inspiration</div>
@@ -236,8 +470,8 @@
                                 </a>
                             </figure>
                             <div class="post-item">
-                                <div class="meta-date">Feb 27, 2021</div>
-                                <h3><a href="#">Reading books always makes the moments happy</a></h3>
+                                <div class="meta-date">Feb 27, 2023</div>
+                                <h3><a href="#">Nghệ Thuật Lựa Chọn Sách: Cẩm Nang Cho Người Đọc Tích Cực</a></h3>
 
                                 <div class="links-element">
                                     <div class="categories">inspiration</div>
@@ -266,7 +500,7 @@
                 <div class="row">
 
                     <div class="btn-wrap align-center">
-                        <a href="#" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Read All Articles<i
+                        <a href="#" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Xem thêm<i
                                 class="icon icon-ns-arrow-right"></i></a>
                     </div>
                 </div>

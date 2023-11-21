@@ -19,7 +19,9 @@ def cart():
     carts = Cart.query.filter_by(user_id=current_user.id)
     total = 0
     for cart in carts:
-        total = total + (cart.product.price * cart.count)
+        price = cart.product.price.replace(',','')
+        price= int(price)
+        total = total + (price * cart.count)
     return render_template('customer/cart/index.html', carts=carts, total=total)
 
 
@@ -63,7 +65,9 @@ def summary():
     user = current_user
     total_price = 0
     for cart in carts:
-        total_price = total_price + (cart.product.price * cart.count)
+        price = cart.product.price.replace(',','')
+        price= int(price)
+        total_price = total_price + (price * cart.count)
     if request.method == 'POST':
 
         user.email = request.form.get('email')
@@ -86,3 +90,14 @@ def summary():
         flash('Đặt hàng thành công', 'success')
         return redirect(url_for('index'))
     return render_template('customer/cart/summary.html', user=user, carts=carts, total=total_price)
+
+@app.route('/customer/order-history', methods=['GET', 'POST'])
+def order_history():
+    order_header = OrderHeader.query.filter_by(user_id=current_user.id).all()
+    order_detail=[]
+    for order in order_header:
+        detail = OrderDetail.query.filter_by(order_id= order.id).all()
+        if detail:
+            order_detail.append(detail)
+        
+    return render_template('order/customer_order.html',order_detail=order_detail,order_header=order_header)

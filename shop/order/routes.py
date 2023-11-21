@@ -12,9 +12,15 @@ import datetime
 def order_manager():
     if current_user.role=='admin':
      order_header = OrderHeader.query.all()
+     return render_template('order/index.html', order_header=order_header)
     else:
-       order_header = OrderHeader.query.filter_by(user_id=current_user.id)
-    return render_template('order/index.html', order_header=order_header)
+        order_header = OrderHeader.query.filter_by(user_id=current_user.id).all()
+        order_detail=[]
+        for order in order_header:
+            detail = OrderDetail.query.filter_by(order_id= order.id).all()
+            if detail:
+                order_detail.append(detail)
+        return render_template('order/customer_order.html',order_detail=order_detail,order_header=order_header)
 
 
 @app.route('/order-manager/detail/<int:id>', methods=['GET', 'POST'])

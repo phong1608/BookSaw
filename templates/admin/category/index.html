@@ -1,13 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="container">
-    <h1 class="text-center">Category List</h1>
-    <a class="btn btn-primary" href="{{ url_for('add_category') }}">Add new category</a>
+    <h1 class="text-center">Danh sách danh mục</h1>
+    <a class="btn btn-primary" href="{{ url_for('add_category') }}">Thêm mới danh mục</a>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>
-                    Category
+                    Danh mục
                 </th>
 
             </tr>
@@ -18,8 +18,8 @@
                 <td>{{ category.name }}</td>
                 <td>
                     <div class="w-75 btn-group">
-                        <a class="btn btn-primary mx-2" href={{ url_for('edit_category',id=category.id )}}>Edit category</a>
-                        <a class="btn btn-danger mx-2" href={{ url_for('delete_category',id=category.id )}}  >Delete</a>
+                        <a class="btn btn-primary mx-2" href={{ url_for('edit_category',id=category.id )}}>Chỉnh sửa</a>
+                        <a class="btn btn-danger mx-2" href={{ url_for('delete_category',id=category.id )}} >Xóa</a>
                     </div>
                 </td>
             </tr>

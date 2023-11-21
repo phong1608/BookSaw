@@ -1,12 +1,13 @@
-from flask import render_template, redirect, url_for, flash, request,current_app
-
-from __init__ import db, app, photos, login_manager,os
+from flask import jsonify, render_template, redirect, url_for, flash, request,current_app
+from flask_socketio import SocketIO, emit
+from __init__ import db, app, photos, login_manager,os,socketio
 from .models import Brand, Category, Product
 from shop.products.forms import Add_Product
 from flask_login import login_required, current_user
 from shop.admin.models import User
 from shop.cart.models import Cart
 
+from Books_recommender import get_recommendation
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -94,12 +95,19 @@ def edit_category(id):
 @app.route('/product/index', methods=['POST', 'GET'])
 def product_page():
     page= request.args.get('page',1,type=int)
+   
     category = Category.query.all()
     products = Product.query.paginate(page=page,per_page=6)
 
 
     return render_template('products/index.html', products=products, categories=category)
-
+@app.route('/product/search', methods=['GET'])
+def search_products():
+    query = request.args.get('query', '')
+    search_product = Product.query.filter(Product.name.ilike(f'%{query}%')).all()
+    return jsonify({'products': render_template('products/search.html', products=search_product)})
+    
+    
 
 @app.route('/product/index/<int:id>')
 def product_filter(id):
@@ -153,8 +161,15 @@ def delete_product(id):
 
 @app.route('/detail/<int:id>', methods=['GET', 'POST'])
 def product_detail(id):
-    product = Product.query.get(id)
+    product = Product.query.filter_by(id=id).first()
+    product_names = get_recommendation(product.name)
+    
+    products_recomm = []
 
+    for product_name in product_names:
+        product_recom = Product.query.filter_by(name=product_name).first()
+        if product:
+            products_recomm.append(product_recom)
     if request.method == 'POST':
         if current_user.is_authenticated:
             user_cart = Cart.query.filter_by(user_id=current_user.id, product_id=product.id).first()
@@ -172,4 +187,6 @@ def product_detail(id):
             flash('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng', 'warning')
             return redirect(url_for('login'))
 
-    return render_template('products/details.html', product=product)
+    return render_template('products/details.html', product=product,products_recom=products_recomm)
+
+

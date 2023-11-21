@@ -1,0 +1,36 @@
+
+    {% for product in products %}
+        <div class="col-lg-4 col-sm-12 mb-4">
+            <div class="card border-0 p-3 shadow border-top border-5 rounded d-flex flex-column align-items-stretch product-card">
+                {% if product.image_1 != None %}
+                    <div class="img-wrap">
+                        <img src="/static/images/{{ product.image_1 }}" class="product-item" />
+                    </div>
+                {% else %}
+                    <img src="https://placehold.co/500x600/png" class="card-img-top rounded flex-grow-1" />
+                {% endif %}
+
+                <div class="card-body pb-0">
+                    <div class="pl-1">
+                        <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">{{ product.name }}</p>
+                        <p class="card-title text-warning text-center">by <b>{{ product.author }}</b></p>
+                    </div>
+                    <div class="pl-1">
+                        <p class="text-dark text-opacity-75 text-center mb-0">
+                            Giá 
+                            <span class="text-dark">
+                                {{ product.price }} VNĐ
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="{{ url_for('product_detail',id=product.id) }}"
+                        class="btn btn-primary bg-gradient border-0 form-control">
+                        Chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    

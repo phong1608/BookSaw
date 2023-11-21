@@ -1,34 +1,34 @@
 {% extends 'layout.html'%}
 {% block content %}
     <div class="container">
-    <h1 class="text-center">Product List</h1>
-    <a class="btn btn-primary" href="{{ url_for('add_product') }}">Add new product</a>
+    <h1 class="text-center">Danh sách sách</h1>
+    <a class="btn btn-primary" href="{{ url_for('add_product') }}">Thêm sản phẩm mới</a>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>
-                    Books
+                    Sách
                 </th>
                 <th>
-                    Author
+                    Tác giả
                 </th>
                 <th>
-                    Price
+                    Giá
                 </th>
                 <th>
-                    Discount
+                    Khuyến mãi
                 </th>
                 <th>
-                    Stock
+                    Số lượng trong kho
                 </th>
                 <th>
-                    Description
+                    Mô tả
                 </th>
                 <th>
-                    Category
+                    Danh mục
                 </th>
                 <th>
-                    Image
+                    Ảnh
                 </th>
 
 
@@ -50,8 +50,8 @@
 
                 <td>
                     <div class="w-75 btn-group">
-                        <a class="btn btn-primary mx-2" href="{{url_for('edit_product',id=product.id)}}">Edit product</a>
-                        <a class="btn btn-danger mx-2" href={{ url_for('delete_product',id=product.id )}}>Delete</a>
+                        <a class="btn btn-primary mx-2" href="{{url_for('edit_product',id=product.id)}}">Chỉnh sửa</a>
+                        <a class="btn btn-danger mx-2" href={{ url_for('delete_product',id=product.id )}}>Xóa</a>
                     </div>
                 </td>
             </tr>

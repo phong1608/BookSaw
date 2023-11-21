@@ -1,7 +1,6 @@
 from flask import Flask, flash
 from flask import render_template, session, request, redirect, url_for
 from __init__ import db, bcrypt, app
-import import_ipynb
 from shop.customer import routes
 from shop.cart import routes
 from shop.order import routes

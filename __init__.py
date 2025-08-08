@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_uploads import IMAGES, UploadSet, configure_uploads, patch_request_class
+from flask_uploads import IMAGES, UploadSet, configure_uploads
 import os
 from flask_login import LoginManager,login_user
 from flask_socketio import SocketIO
@@ -12,9 +12,10 @@ app = Flask('__name__')
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///website.db"
 app.config['SECRET_KEY'] = 'thisisasecretkey'
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/images')
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
-patch_request_class(app)
 socketio=SocketIO(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
